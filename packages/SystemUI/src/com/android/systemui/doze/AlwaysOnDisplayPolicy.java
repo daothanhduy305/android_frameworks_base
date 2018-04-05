@@ -39,7 +39,7 @@ import java.util.Arrays;
 public class AlwaysOnDisplayPolicy {
     public static final String TAG = "AlwaysOnDisplayPolicy";
 
-    private static final long DEFAULT_PROX_SCREEN_OFF_DELAY_MS = 10 * DateUtils.SECOND_IN_MILLIS;
+    private static final long DEFAULT_PROX_SCREEN_OFF_DELAY_MS = 3 * DateUtils.SECOND_IN_MILLIS;
     private static final long DEFAULT_PROX_COOLDOWN_TRIGGER_MS = 2 * DateUtils.SECOND_IN_MILLIS;
     private static final long DEFAULT_PROX_COOLDOWN_PERIOD_MS = 5 * DateUtils.SECOND_IN_MILLIS;
 
