@@ -2977,6 +2977,13 @@ public final class Settings {
             "lock_pattern_tactile_feedback_enabled";
 
         /**
+         * Whether to scramble a pin unlock layout
+         * @hide
+         */
+        public static final String LOCKSCREEN_PIN_SCRAMBLE_LAYOUT =
+                "lockscreen_scramble_pin_layout";
+
+        /**
          * A formatted string of the next alarm that is set, or the empty string
          * if there is no alarm set.
          *
@@ -4468,6 +4475,13 @@ public final class Settings {
                 "statusbar_battery_force_percent";
 
         /**
+         *
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_LOW_COLOR_ENABLE =
+                "statusbar_battery_low_color_enable";
+
+        /**
          * Show or hide clock
          * 0 - hide
          * 1 - show (default)
@@ -4571,7 +4585,20 @@ public final class Settings {
          * location of the clear all recents button
          * @hide
          */
-        public static final String  RECENTS_CLEAR_ALL_LOCATION = "recents_clear_all_location";
+        public static final String RECENTS_CLEAR_ALL_LOCATION = "recents_clear_all_location";
+
+        /**
+         *
+         * @hide
+         */
+        public static final String BATTERY_SAVER_SYSTEM_BAR_COLOR_ENABLE =
+                "battery_saver_system_bars_color_enable";
+
+        /**
+         * Whether to control brightness from status bar
+         * @hide
+         */
+        public static final String STATUS_BAR_BRIGHTNESS_CONTROL = "status_bar_brightness_control";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
@@ -4815,6 +4842,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_CHARGING_COLOR);
             PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_CHARGING_COLOR_ENABLE);
             PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_DOTTED_LINE);
+            PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_LOW_COLOR_ENABLE);
             PRIVATE_SETTINGS.add(BUTTON_BACK_KILL_TIMEOUT);
             PRIVATE_SETTINGS.add(BUTTON_BACK_KILL_ENABLE);
             PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_FORCE_PERCENT);
@@ -4828,6 +4856,9 @@ public final class Settings {
             PRIVATE_SETTINGS.add(QS_QUICKBAR_COLUMNS);
             PRIVATE_SETTINGS.add(FINGERPRINT_SUCCESS_VIB);
             PRIVATE_SETTINGS.add(STATUS_BAR_QUICK_QS_PULLDOWN);
+            PRIVATE_SETTINGS.add(LOCKSCREEN_PIN_SCRAMBLE_LAYOUT);
+            PRIVATE_SETTINGS.add(BATTERY_SAVER_SYSTEM_BAR_COLOR_ENABLE);
+            PRIVATE_SETTINGS.add(STATUS_BAR_BRIGHTNESS_CONTROL);
         }
 
         /**
