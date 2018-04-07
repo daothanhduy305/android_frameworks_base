@@ -2055,24 +2055,6 @@ public final class PowerManagerService extends SystemService
                             if (mButtonBacklightOnTouchOnly) {
                                 if (buttonPressed) {
                                     triggerButtonTimeoutEvent(now);
-                        mUserActivitySummary = USER_ACTIVITY_SCREEN_BRIGHT;
-                        if (mWakefulness == WAKEFULNESS_AWAKE) {
-                            int buttonBrightness;
-                            if (mButtonBrightnessOverrideFromWindowManager >= 0) {
-                                buttonBrightness = mButtonBrightnessOverrideFromWindowManager;
-                            } else {
-                                buttonBrightness = mButtonBrightness;
-                            }
-
-                            if (mButtonTimeout != 0
-                                    && now > mLastUserActivityTime + mButtonTimeout) {
-                                mButtonsLight.setBrightness(0);
-                            } else {
-                                if (!mProximityPositive) {
-                                    mButtonsLight.setBrightness(buttonBrightness);
-                                    if (buttonBrightness != 0 && mButtonTimeout != 0) {
-                                        nextTimeout = now + mButtonTimeout;
-                                    }
                                 }
                             } else {
                                 triggerButtonTimeoutEvent(now);
