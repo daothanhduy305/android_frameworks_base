@@ -96,15 +96,4 @@
     <bool name="config_notificationTinting_override">false</bool>
 
     <string name="def_wireless_charging_started_sound" translatable="false">/system/media/audio/ui/WirelessChargingStarted.ogg</string>
-    
-    <!-- The list of components which should be automatically disabled. -->
-    <string-array name="config_disabledComponents" translatable="false">
-    </string-array>
-
-    <!-- The list of components which should be forced to be enabled. -->
-    <string-array name="config_forceEnabledComponents" translatable="false">
-    </string-array>
-
-    <integer name="config_buttonBrightnessSettingDefault">255</integer>
-    <bool name="config_deviceHasVariableButtonBrightness">false</bool>
 </resources>
