@@ -4658,6 +4658,96 @@ public final class Settings {
                 "long_press_power_torch";
 
         /**
+         * Defines the global heads up notification snooze
+         * @hide
+         */
+        public static final String HEADS_UP_NOTIFICATION_SNOOZE = "heads_up_notification_snooze";
+
+        /**
+         * Heads up timeout configuration
+         * @hide
+         */
+        public static final String HEADS_UP_TIMEOUT = "heads_up_timeout";
+
+         /**
+         * Whether ADB over network should be disabled when the device gets disconnected from network
+         * The value is boolean (1 or 0).
+         * @hide
+         */
+        public static final String DISABLE_ADB_NETWORK_ON_DISCONNECT = "disable_adb_network_on_disconnect";
+
+        /**
+         * @hide
+         */
+        public static final String LOCKSCREEN_CLOCK_STYLE = "lockscreen_clock_style";
+
+        /**
+         * @hide
+         */
+        public static final String LOCKSCREEN_OMNI_CLOCK_24H_MODE =
+                "lockscreen_omni_clock_24h_mode";
+
+        /**
+         * @hide
+         */
+        public static final String LOCKSCREEN_OMNI_CLOCK_SHOW_TICKS =
+                "lockscreen_omni_clock_show_ticks";
+
+        /**
+         * @hide
+         */
+        public static final String LOCKSCREEN_OMNI_CLOCK_SHOW_NUMBERS =
+                "lockscreen_omni_clock_show_numbers";
+
+        /**
+         * @hide
+         */
+        public static final String LOCKSCREEN_OMNI_CLOCK_BG_COLOR =
+                "lockscreen_omni_clock_bg_color";
+
+        /**
+         * @hide
+         */
+        public static final String LOCKSCREEN_OMNI_CLOCK_BORDER_COLOR =
+                "lockscreen_omni_clock_border_color";
+
+        /**
+         * @hide
+         */
+        public static final String LOCKSCREEN_OMNI_CLOCK_TEXT_COLOR =
+                "lockscreen_omni_clock_text_color";
+
+        /**
+         * @hide
+         */
+        public static final String LOCKSCREEN_OMNI_CLOCK_ACCENT_COLOR =
+                "lockscreen_omni_clock_accent_color";
+
+        /**
+         * @hide
+         */
+        public static final String LOCKSCREEN_OMNI_CLOCK_HOUR_COLOR =
+                "lockscreen_omni_clock_hour_color";
+
+        /**
+         * @hide
+         */
+        public static final String LOCKSCREEN_OMNI_CLOCK_MINUTE_COLOR =
+                "lockscreen_omni_clock_minute_color";
+
+        /**
+         * @hide
+         */
+        public static final String LOCKSCREEN_DIGITAL_CLOCK_TWO_LINES =
+                "lockscreen_digital_clock_two_lines";
+
+        /**
+         * @hide
+         */
+        public static final String LOCKSCREEN_DIGITAL_CLOCK_BOLD_HOUR =
+                "lockscreen_digital_clock_bold_hour";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -5019,6 +5109,20 @@ public final class Settings {
             PRIVATE_SETTINGS.add(ASPECT_RATIO_APPS_LIST);
             PRIVATE_SETTINGS.add(ASPECT_RATIO_APPS_ENABLED);
             PRIVATE_SETTINGS.add(NAVIGATION_BAR_MENU_ARROW_KEYS);
+            PRIVATE_SETTINGS.add(HEADS_UP_NOTIFICATION_SNOOZE);
+            PRIVATE_SETTINGS.add(HEADS_UP_TIMEOUT);
+            PRIVATE_SETTINGS.add(LOCKSCREEN_CLOCK_STYLE);
+            PRIVATE_SETTINGS.add(LOCKSCREEN_OMNI_CLOCK_24H_MODE);
+            PRIVATE_SETTINGS.add(LOCKSCREEN_OMNI_CLOCK_SHOW_NUMBERS);
+            PRIVATE_SETTINGS.add(LOCKSCREEN_OMNI_CLOCK_SHOW_TICKS);
+            PRIVATE_SETTINGS.add(LOCKSCREEN_OMNI_CLOCK_BG_COLOR);
+            PRIVATE_SETTINGS.add(LOCKSCREEN_OMNI_CLOCK_BORDER_COLOR);
+            PRIVATE_SETTINGS.add(LOCKSCREEN_OMNI_CLOCK_TEXT_COLOR);
+            PRIVATE_SETTINGS.add(LOCKSCREEN_OMNI_CLOCK_ACCENT_COLOR);
+            PRIVATE_SETTINGS.add(LOCKSCREEN_OMNI_CLOCK_HOUR_COLOR);
+            PRIVATE_SETTINGS.add(LOCKSCREEN_OMNI_CLOCK_MINUTE_COLOR);
+            PRIVATE_SETTINGS.add(LOCKSCREEN_DIGITAL_CLOCK_TWO_LINES);
+            PRIVATE_SETTINGS.add(LOCKSCREEN_DIGITAL_CLOCK_BOLD_HOUR);
         }
 
         /**
