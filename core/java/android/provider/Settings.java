@@ -4219,6 +4219,12 @@ public final class Settings {
         public static final String QS_TILE_TITLE_VISIBILITY = "qs_tile_title_visibility";
 
         /**
+         * Whether to change the transparency of the qs panel
+         * @hide
+         */
+        public static final String QS_PANEL_BG_ALPHA = "qs_panel_bg_alpha";
+
+        /**
          * @hide
          */
         public static final String QS_LAYOUT_ROWS = "qs_layout_rows";
@@ -11019,6 +11025,11 @@ public final class Settings {
          * @hide
          */
         public static final String POLICY_CONTROL_STYLE = "policy_control_style";
+
+        /**
+         * @hide
+         */
+        public static final String OVERRIDE_POLICY_CONTROL = "override_policy_control";
 
         /**
          * Defines global zen mode.  ZEN_MODE_OFF, ZEN_MODE_IMPORTANT_INTERRUPTIONS,
