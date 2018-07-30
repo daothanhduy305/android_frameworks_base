@@ -870,6 +870,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private Sensor mProximitySensor;
     private boolean mProxiWakeupCheckEnabled;
     private boolean mProxiListenerEnabled;
+    private boolean mSplitscreenForceShowSystemBars;
 
     // constants for rotation bits
     private static final int ROTATION_0_MODE = 1;
@@ -1144,6 +1145,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.SYSTEM_PROXI_CHECK_ENABLED), false, this,
+                    UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.SPLITSCREEN_FORCE_SYSTEMBAR_ENABLED), false, this,
                     UserHandle.USER_ALL);
 
             updateSettings();
@@ -2745,6 +2749,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             mProxiWakeupCheckEnabled = Settings.System.getIntForUser(resolver,
                     Settings.System.SYSTEM_PROXI_CHECK_ENABLED, 0,
                     UserHandle.USER_CURRENT) != 0;
+            mSplitscreenForceShowSystemBars = Settings.System.getIntForUser(resolver,
+                    Settings.System.SPLITSCREEN_FORCE_SYSTEMBAR_ENABLED, 1,
+                    UserHandle.USER_CURRENT) != 0;
         }
         synchronized (mWindowManagerFuncs.getWindowManagerLock()) {
             WindowManagerPolicyControl.reloadFromSetting(mContext);
@@ -3939,10 +3946,27 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                         return -1;
                     }
                 }
+            } else {
+                // there is one action we could trigger here from keyguard thats important
+                // and thats back key to hide e.g. keypad
+                if (getCustomKeyAction(keyCode) == KEY_ACTION_BACK) {
+                    if (!down) {
+                        performKeyAction(KEY_ACTION_BACK);
+                    }
+                }
             }
             return -1;
         } else if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (!virtualKey) {
+                if (keyguardOn) {
+                    // shortcut for back key in lock screen
+                    if (!isCustomKeyAction(keyCode)) {
+                        if (!down) {
+                            performKeyAction(KEY_ACTION_BACK);
+                        }
+                    }
+                    return -1;
+                }
                 if (down) {
                     if (repeatCount == 0) {
                         if (isCustomKeyAction(keyCode)) {
@@ -6130,6 +6154,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 }
             } else if (mTopFullscreenOpaqueWindowState != null) {
                 topIsFullscreen = topAppHidesStatusBar;
+                final boolean forceShowSystemBars = mSplitscreenForceShowSystemBars &&
+                        (mWindowManagerInternal.isStackVisible(DOCKED_STACK_ID) ||
+                        mWindowManagerInternal.isStackVisible(FREEFORM_WORKSPACE_STACK_ID));
                 // The subtle difference between the window for mTopFullscreenOpaqueWindowState
                 // and mTopIsFullscreen is that mTopIsFullscreen is set only if the window
                 // has the FLAG_FULLSCREEN set.  Not sure if there is another way that to be the
@@ -6138,9 +6165,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     if (mStatusBarController.setBarShowingLw(true)) {
                         changes |= FINISH_LAYOUT_REDO_LAYOUT;
                     }
-                } else if (topIsFullscreen
-                        && !mWindowManagerInternal.isStackVisible(FREEFORM_WORKSPACE_STACK_ID)
-                        && !mWindowManagerInternal.isStackVisible(DOCKED_STACK_ID)) {
+                } else if (topIsFullscreen && !forceShowSystemBars) {
                     if (DEBUG_LAYOUT) Slog.v(TAG, "** HIDING status bar");
                     if (mStatusBarController.setBarShowingLw(false)) {
                         changes |= FINISH_LAYOUT_REDO_LAYOUT;
@@ -8831,7 +8856,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         // We need to force system bars when the docked stack is visible, when the freeform stack
         // is visible but also when we are resizing for the transitions when docked stack
         // visibility changes.
-        mForceShowSystemBars = dockedStackVisible || freeformStackVisible || resizing;
+        mForceShowSystemBars = mSplitscreenForceShowSystemBars && (dockedStackVisible || freeformStackVisible || resizing);
         final boolean forceOpaqueStatusBar = mForceShowSystemBars && !mForceStatusBarFromKeyguard;
 
         // apply translucent bar vis flags
